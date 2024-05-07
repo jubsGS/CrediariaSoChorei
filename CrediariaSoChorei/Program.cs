@@ -99,7 +99,7 @@ void MostraSaldos()
     Console.WriteLine("(numero) - (status) -> (saldo)");
     foreach(var conta in contas) 
     {
-        if(conta.status == true)
+        if(conta.status)
             Console.WriteLine(conta.numero + " - (ativada) -> " + conta.saldo);
         else
             Console.WriteLine(conta.numero + " - (desativada) -> " + conta.saldo);
@@ -115,7 +115,10 @@ void ExcluirCC()
     if (conta != null)
     {
         if(conta.saldo == 0)
+        {
             Console.WriteLine("Ação concluida com sucesso.");
+            conta.status = false; 
+        }
         else
             Console.WriteLine("Não foi possivel excluir a conta. Verifique se o saldo da conta que deseja excluir seja igual a 0 (zero).");
     }
@@ -209,7 +212,7 @@ void CaixaEletro()
                         if (conta.Transferir(CCdestino, valores))
                             Console.WriteLine("Transferencia efetuada com sucesso!");
                         else
-                            Console.WriteLine("Nao foi possivel realizar a transferencia. É possível que a conta destino esteja desativada. Por favor, tente novamente.");
+                            Console.WriteLine("Nao foi possivel realizar a transferencia. É possível que a conta destino esteja desativada ou o valor pode ser acima do limite disponível. Por favor, tente novamente.");
                     }
                     else
                     {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,7 +41,8 @@ namespace CrediariaSoChorei
         {
             if (ContaDestino.status && Sacar(valores) && ContaDestino.Depositar(valores))
             {
-                Transacoes[Transacoes.Count - 1].duplicata = ContaDestino.Transacoes[Transacoes.Count - 1];
+                Transacoes[Transacoes.Count - 1].duplicata = ContaDestino.Transacoes[ContaDestino.Transacoes.Count - 1];
+
                 ContaDestino.Transacoes[ContaDestino.Transacoes.Count - 1].duplicata = Transacoes[Transacoes.Count - 1];
                 return true;
             }
